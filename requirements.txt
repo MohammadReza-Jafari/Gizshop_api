@@ -1,0 +1,6 @@
+django == 2.2
+djangorestframework
+postgres
+psycopg2
+pillow
+
