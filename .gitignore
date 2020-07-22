@@ -309,5 +309,6 @@ fabric.properties
 [Ss]cripts
 pyvenv.cfg
 pip-selfcheck.json
+node_modules/
 
 # End of https://www.toptal.com/developers/gitignore/api/pycharm,venv,django,python

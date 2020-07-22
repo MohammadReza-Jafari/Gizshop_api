@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-KEY = open('F:\\work-space\\rest\\secret_keys\\giz_api.txt', mode='r').read()
+#KEY = open('F:\\work-space\\rest\\secret_keys\\giz_api.txt', mode='r').read()
 SECRET_KEY = 'q172228!c0m@ql%!vlzp4#86x4dmp7_1-jh2k(hd6pi=@^er$='
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'gizshop_api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DB_INFO = open('F:\\password.txt', mode='r').read().split('\n')
+#DB_INFO = open('F:\\password.txt', mode='r').read().split('\n')
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
