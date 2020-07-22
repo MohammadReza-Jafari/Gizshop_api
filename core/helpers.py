@@ -1,5 +1,8 @@
 from django.core.mail import EmailMultiAlternatives
 from django.template import loader
+from django.core.validators import validate_email
+from django.core.exceptions import ValidationError
+
 
 def is_valid_national_code(national_code: str):
     if not len(national_code) == 10:
@@ -42,3 +45,11 @@ def send_email(subject, template_name_html, template_name_text, data, to):
     )
     msg.attach_alternative(content_html, "text/html")
     msg.send()
+
+
+def is_valid_email(email):
+    try:
+        validate_email(email)
+        return True
+    except ValidationError:
+        return False

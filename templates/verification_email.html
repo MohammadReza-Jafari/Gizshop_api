@@ -1,16 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Gizshop Email verification</title>
-</head>
-<body>
-    <h4>Hi {{ name }}</h4>
-    <p>Thank you for joining to our big family ...</p>
-    <p>You can verify your account via clicking on link below</p>
-    <p>127.0.0.1:8000/user/activate/{{ activation_code }}</p>
-    <br>
-    <br>
-    <h5>Thank you!</h5>
-</body>
+    <head>
+        <script> 
+            function mouseover() { 
+                document.getElementById("button").style.color = "red"; 
+                document.getElementById("button").style.backgroundColor = "white";
+                
+                document.getElementById("button").style.transitionProperty = "color";
+                document.getElementById("button").style.transitionDuration = "0.5s";
+            } 
+              
+            function mouseout() { 
+                document.getElementById("button").style.color = "white"; 
+                document.getElementById("button").style.backgroundColor = "#046E8B";
+            } 
+            function mousedown() { 
+                document.getElementById("button").style.outline = "none"; 
+            } 
+        </script>
+        <title>فعالسازی حساب کاربری</title>
+    </head>
+    <body>
+        <div style="position: absolute ;width: 22vw;height: 21vw;margin-left: 39vw; margin-top: 2vw;;">
+            <img style="position: absolute;left: 0; top : 0;width:22vw;" src = "https://img.techpowerup.org/200721/formv2.png"/>
+            <p style="position: absolute; margin-top: 6.6vw; font-size: 0.7vw; right: 4.48vw;;">{{ name }}</p>
+            <button id="button" style="font-size: 0.68vw; position: absolute;margin-top: 14.6vw; left: 7vw;width: 8VW;height: 1.98VW; border: none;border-radius: 2vw;color : white;
+                            background-color: #046e8b;box-shadow: 0px 0px 1.22vw 0.1vw rgba(0 , 0 , 0 , 0.24);
+            "onclick="window.location.href='127.0.0.1:8000/user/activate/{{ activation_code }}';"onmouseover="mouseover()"
+            onmouseout="mouseout()" onmousedown="mousedown()" >فعال سازی حساب</button>
+        </div>
+    </body>
 </html>

@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 KEY = open('F:\\work-space\\rest\\secret_keys\\giz_api.txt', mode='r').read()
-SECRET_KEY = KEY
+SECRET_KEY = 'q172228!c0m@ql%!vlzp4#86x4dmp7_1-jh2k(hd6pi=@^er$='
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -83,8 +83,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'gizshop_api_db',
-        'USER': DB_INFO[0],
-        'PASSWORD': DB_INFO[1],
+        'USER': 'postgres',
+        'PASSWORD': 'django1234',
         'HOST': 'localhost',
         'PORT': '5432'
     }

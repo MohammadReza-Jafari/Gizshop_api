@@ -3,4 +3,6 @@ djangorestframework
 postgres
 psycopg2
 pillow
+gunicorn
+django-heroku
 

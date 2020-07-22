@@ -32,6 +32,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     postal_code = models.CharField(max_length=10, null=True)
     national_code = models.CharField(max_length=10, null=True, unique=True)
     activation_code = models.CharField(default=None, max_length=255, null=True)
+    reset_code = models.IntegerField(default=None, null=True)
     phone_number = models.CharField(max_length=13, null=True, unique=True)
     bank_account = models.CharField(max_length=16, null=True)
 

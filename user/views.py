@@ -1,14 +1,15 @@
 import uuid
+import random
 
-from rest_framework import generics, authentication, permissions, status
+from rest_framework import generics, authentication, permissions, status, viewsets
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.settings import api_settings
 from rest_framework.decorators import APIView
+from django.contrib.auth import get_user_model
 
 from . import serializers
-from .models import CustomUser
 from core import helpers
 
 
@@ -49,8 +50,8 @@ class ManageUserView(generics.RetrieveUpdateAPIView):
 class GetActivationCodeView(APIView):
     def post(self, request, *args, **kwargs):
         email: str = request.data['email']
-        if email and len(email) > 0:
-            user = CustomUser.objects.filter(email=email).first()
+        if helpers.is_valid_email(email):
+            user = get_user_model().objects.filter(email=email).first()
             if user:
                 user.activation_code = uuid.uuid4()
                 user.save()
@@ -66,16 +67,55 @@ class GetActivationCodeView(APIView):
                     user.email
                 )
                 return Response({'result': 'success'}, status=status.HTTP_200_OK)
-            return Response({'result': 'user not found'}, status=status.HTTP_404_NOT_FOUND)
-        return Response({'result': 'email is not valid'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': 'user not found'}, status=status.HTTP_404_NOT_FOUND)
+        return Response({'error': 'email is not valid'}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class ActivationView(APIView):
     def get(self, request, activation_code=None):
-        user = CustomUser.objects.filter(activation_code=activation_code).first()
+        user = get_user_model().objects.filter(activation_code=activation_code).first()
         if user:
             user.is_active = True
             user.activation_code = None
             user.save()
             return Response({'result': 'success'}, status=status.HTTP_200_OK)
-        return Response({'result': 'failed'}, status=status.HTTP_400_BAD_REQUEST)
+        # success redirect should add below
+        return Response({'error': 'activation code is wrong'}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class GetResetCodeView(APIView):
+    def post(self, request, *args, **kwargs):
+        email = request.data['email']
+        if helpers.is_valid_email(email):
+            user = get_user_model().objects.filter(email=email).first()
+            if user:
+                user.reset_code = random.randint(100000, 999999)
+                user.save()
+                print(user.reset_code)
+                data = {
+                    'reset_code': user.reset_code,
+                    'name': user.name
+                }
+                helpers.send_email(
+                    'بازیابی رمز عبور گیزشاپ',
+                    'reset_email.html',
+                    'reset_text.txt',
+                    data,
+                    user.email
+                )
+                return Response({'result': 'success'}, status=status.HTTP_200_OK)
+            return Response({'error': 'user not found'}, status=status.HTTP_404_NOT_FOUND)
+        return Response({'error': 'email is not valid'}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ResetPasswordView(APIView):
+    def post(self, request, *args, **kwargs):
+        reset_code = request.data['reset_code']
+        new_password = request.data['password']
+        user = get_user_model().objects.filter(reset_code=reset_code).first()
+        if user:
+            user.set_password(new_password)
+            user.reset_code = None
+            user.save()
+            return Response({'result': 'success'}, status=status.HTTP_200_OK)
+        return Response({'error': 'reset code is wrong'}, status=status.HTTP_400_BAD_REQUEST)

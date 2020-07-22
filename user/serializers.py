@@ -30,22 +30,10 @@ class UserSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         user = get_user_model().objects.create_user(**validated_data)
-        # html = loader.get_template('verification_email.html')
-        # text = loader.get_template('verification_text.txt')
         data = {
             'name': user.name,
             'activation_code': user.activation_code
         }
-        # content_html = html.render(data)
-        # content_text = text.render(data)
-        # msg = EmailMultiAlternatives(
-        #     'Gizshop verification',
-        #     content_text,
-        #     'gizshopteam@gmail.com',
-        #     [user.email]
-        # )
-        # msg.attach_alternative(content_html, "text/html")
-        # msg.send()
         helpers.send_email(
             'Gizshop verification',
             'verification_email.html',
@@ -95,8 +83,6 @@ class AuthTokenSerializer(serializers.Serializer):
     def validate(self, attrs):
         email = attrs['email']
         password = attrs['password']
-        print(email)
-        print(password)
 
         user = authenticate(
             self.context['request'], username=email, password=password)
@@ -110,3 +96,4 @@ class AuthTokenSerializer(serializers.Serializer):
 
         attrs['user'] = user
         return attrs
+
