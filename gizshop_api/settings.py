@@ -12,22 +12,23 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
+import dj_database_url
+from decouple import config
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#KEY = open('F:\\work-space\\rest\\secret_keys\\giz_api.txt', mode='r').read()
+# KEY = open('F:\\work-space\\rest\\secret_keys\\giz_api.txt', mode='r').read()
 SECRET_KEY = 'q172228!c0m@ql%!vlzp4#86x4dmp7_1-jh2k(hd6pi=@^er$='
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -74,22 +75,23 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'gizshop_api.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-#DB_INFO = open('F:\\password.txt', mode='r').read().split('\n')
+# DB_INFO = open('F:\\password.txt', mode='r').read().split('\n')
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'gizshop_api_db',
-        'USER': 'postgres',
-        'PASSWORD': 'django1234',
-        'HOST': 'localhost',
-        'PORT': '5432'
-    }
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL')
+    )
+    # {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'gizshop_api_db',
+    #     'USER': 'postgres',
+    #     'PASSWORD': 'django1234',
+    #     'HOST': 'localhost',
+    #     'PORT': '5432'
+    # }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -109,7 +111,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -122,7 +123,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
