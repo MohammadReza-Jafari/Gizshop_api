@@ -1,39 +1,14 @@
+import re
+from django.core.mail import EmailMultiAlternatives
+from django.template import loader
+from django.shortcuts import render
+
 from rest_framework import serializers
 from django.contrib.auth import get_user_model, authenticate
-
-
-def is_valid_national_code(national_code: str):
-    if not len(national_code) == 10:
-        return False
-    wrong_code = [
-        '0000000000', '1111111111', '2222222222', '3333333333', '4444444444', '5555555555',
-        '6666666666', '7777777777', '8888888888', '9999999999'
-    ]
-
-    if national_code in wrong_code:
-        return False
-
-    if not national_code.isdigit():
-        return False
-
-    check = int(national_code[9])
-    temp1 = sum([int(national_code[x]) * (10 - x) for x in range(9)])
-    temp2 = temp1 % 11
-
-    if temp2 == 0 and check == temp2:
-        return True
-    if temp2 == 1 and check == 1:
-        return True
-    if temp2 > 1 and check == abs(temp2 - 11):
-        return True
-    return False
+from core import helpers
 
 
 class UserSerializer(serializers.ModelSerializer):
-    phone_number = serializers.RegexField(
-        regex=r'(0|\+98)?([ ]|-|[()]){0,2}9[1|2|3|4]([ ]|-|[()]){0,2}(?:[0-9]([ ]|-|[()]){0,2}){8}',
-        required=True
-    )
     postal_code = serializers.RegexField(
         regex=r'\b(?!(\d)\1{3})[13-9]{4}[1346-9][013-9]{5}\b',
         required=True
@@ -54,7 +29,31 @@ class UserSerializer(serializers.ModelSerializer):
         }
 
     def create(self, validated_data):
-        return get_user_model().objects.create_user(**validated_data)
+        user = get_user_model().objects.create_user(**validated_data)
+        # html = loader.get_template('verification_email.html')
+        # text = loader.get_template('verification_text.txt')
+        data = {
+            'name': user.name,
+            'activation_code': user.activation_code
+        }
+        # content_html = html.render(data)
+        # content_text = text.render(data)
+        # msg = EmailMultiAlternatives(
+        #     'Gizshop verification',
+        #     content_text,
+        #     'gizshopteam@gmail.com',
+        #     [user.email]
+        # )
+        # msg.attach_alternative(content_html, "text/html")
+        # msg.send()
+        helpers.send_email(
+            'Gizshop verification',
+            'verification_email.html',
+            'verification_text.txt',
+            data,
+            user.email
+        )
+        return user
 
     def update(self, instance, validated_data):
         password = validated_data.pop('password', None)
@@ -67,8 +66,25 @@ class UserSerializer(serializers.ModelSerializer):
 
     def validate(self, attrs):
         national_code = attrs['national_code']
-        if not is_valid_national_code(national_code):
-            raise serializers.ValidationError({'national_code': 'National code is not valid'})
+        phone_number = attrs['phone_number']
+        errors = {}
+        national_code_error_msg = None
+        phone_number_error_msg = None
+        if not re.match(
+                pattern="(0|\+98)?([ ]|-|[()]){0,2}9[1|2|3|4]([ ]|-|[()]){0,2}(?:[0-9]([ ]|-|[()]){0,2}){8}",
+                string=phone_number
+        ):
+            phone_number_error_msg = "Doesn't match with iran phone number pattern"
+        if not helpers.is_valid_national_code(national_code):
+            national_code_error_msg = "National code is not valid"
+
+        if phone_number_error_msg:
+            errors.update({'phone_number': phone_number_error_msg})
+        if national_code_error_msg:
+            errors.update({'national_code': national_code_error_msg})
+
+        if len(errors) > 0:
+            raise serializers.ValidationError(errors)
         return attrs
 
 
