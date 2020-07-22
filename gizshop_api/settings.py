@@ -80,17 +80,14 @@ WSGI_APPLICATION = 'gizshop_api.wsgi.application'
 
 # DB_INFO = open('F:\\password.txt', mode='r').read().split('\n')
 DATABASES = {
-    'default': dj_database_url.config(
-        default=decouple.config('DATABASE_URL')
-    )
-    # {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'gizshop_api_db',
-    #     'USER': 'postgres',
-    #     'PASSWORD': 'django1234',
-    #     'HOST': 'localhost',
-    #     'PORT': '5432'
-    # }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'gizshop_api_db',
+        'USER': 'postgres',
+        'PASSWORD': 'django1234',
+        'HOST': 'localhost',
+        'PORT': '5432'
+    }
 }
 
 # Password validation
