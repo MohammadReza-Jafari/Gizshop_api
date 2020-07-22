@@ -1,3 +1,4 @@
+decouple
 dj-config-url
 django == 2.2
 djangorestframework

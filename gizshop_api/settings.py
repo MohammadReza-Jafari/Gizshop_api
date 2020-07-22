@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 
 import dj_database_url
-from decouple import config
+import decouple
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'gizshop_api.wsgi.application'
 # DB_INFO = open('F:\\password.txt', mode='r').read().split('\n')
 DATABASES = {
     'default': dj_database_url.config(
-        default=config('DATABASE_URL')
+        default=decouple.config('DATABASE_URL')
     )
     # {
     #     'ENGINE': 'django.db.backends.postgresql',
