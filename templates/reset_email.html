@@ -1,14 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Reset Password</title>
-</head>
-<body>
-    <p>Hi {{ name }}</p>
-    <p>Your Rest code : {{ reset_code }}</p>
-    <p>For resetting you can visit link below</p>
-    <p>https://www.google.com</p>
-    <p>Gizshop support team</p>
-</body>
+<html>
+    <head>
+        <script> 
+            function mouseover() { 
+                document.getElementById("button").style.color = "green"; 
+                document.getElementById("button").style.backgroundColor = "white";
+                
+                document.getElementById("button").style.transitionProperty = "color";
+                document.getElementById("button").style.transitionDuration = "0.5s";
+            } 
+              
+            function mouseout() { 
+                document.getElementById("button").style.color = "white"; 
+                document.getElementById("button").style.backgroundColor = "#046E8B";
+            } 
+        </script>
+    </head>
+    <body>
+        <div>
+            <div dir="rtl" style="margin:0;padding:0!important;background-color:#f6f6f6" width="100%" >
+                <center style="width:100%;background-color:#f6f6f6">
+                 <div style="box-shadow: 0px 0px 3vw 0.2vw rgba(0 , 0 , 0 , 0.1);max-width:600px;margin:0 auto">
+                  
+                  <table align="center" border="0" cellpadding="0" cellspacing="0" style="margin:0 auto" width="100%">
+                   <tbody><tr>
+                    <td style="padding:40px 0 20px;text-align:center">
+                     <a href="#" rel="noopener noreferrer" style="text-decoration:none" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://quera.ir/qmail/click/gAAAAABfDFA8-h7cp6pGPDE6qN8G1FQeZuZzWChuXD4HvWRYH-N9y4a3HvnTKoLeWoMMx41oZuz5BK6jASjJxPSoyo268ZOkLL-VvMUeu2rHap3duqTbfR8j5NMIA2VwHB2EsCRBfq-EPbtxfR5b6UoHtTCY80RNd-A243HYvfHqcCUIUQIbItzLPp9guK8n9mO2HXs_NCDF1uqEDbFckjHKhNNpBhiji34L-f-E82Yi_fHbleRw1J5zxCGjOFyNP_0et9-7ClfoIq7QVZRSUUMHbKXgOjJntG46sAxA8t3-UVySKFmvtyw%3D&amp;source=gmail&amp;ust=1595513154337000&amp;usg=AFQjCNF0Z2ci2gOeWQu1MXD0MkL-odX32g">
+                      <img alt="gizshop" border="0" src="https://img.techpowerup.org/200722/logopng.png" style="border-bottom : solid 1px rgba(0 , 0 , 0 , 0.24); width : 12vw;height:6vw;font-family:IranSans,Tahoma,sans-serif;font-size:15px;line-height:15px;color:#555555" width="180" class="CToWUd">
+                     </a>
+                    </td>
+                   </tr>
+                   <tr>
+                    <td style="background-color:#ffffff">
+                     <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                      <tbody><tr>
+                       <td style="padding : 30px ;padding-top : 50px;font-family:IranSans,Tahoma,sans-serif;font-size:15px;line-height:25px;color:#555555">
+                        <p>
+                         <strong>{{ name }} عزیز، سلام</strong>
+                        </p>
+                        <p style = " font-size: 16.2px;">
+                            برای بازیابی رمز حساب کاربری خود از کد اعتبار سنجی زیر استفاده کنید
+                        </p>
+                        <p style = "margin-left : auto;margin-right : auto;padding : 8px;width : 78px;display : inline-block ;text-align : center;border-radius : 5px; background-color : #F2F2F2;color : green; letter-spacing : 3px; margin-top : 40px;"><strong>{{ reset_code }}</strong></p>
+                        <p style = "font-size: 13px ;">توجه : برای حفظ حریم شخصی، اعتبار کد ارسال شده از لحظه دریافت به مدت 48 ساعت<br /> خواهد بود.
+                        اگر درخواست بازیابی رمز توسط شما صورت نگرفنه است، سریعا موضوع را با تیم پشتیبانی در میان بگذارید.
+                        </p>
+                        <p style="margin:4em 0px 2em;text-align:right ; font-size : 12px;">
+                         <strong>با احترام، تیم پشتیبانی گیزشاپ</strong>
+                        </p>
+                       </td>
+                      </tr>
+                     </tbody></table>
+                    </td>
+                   </tr>
+                  </tbody></table>
+                  <table align="center" border="0" cellpadding="0" cellspacing="0" style="margin:0 auto" width="100%">
+                   <tbody><tr>
+                    <td style="padding:20px;font-family:IranSans,Tahoma,sans-serif;font-size:12px;line-height:15px;text-align:center;color:#888888">
+                        this email was meant for Gizshop |   Gizshop Support Team
+                     <br>
+                     <span style="font-size:10px">
+                        All Right Reserved(CC)
+                     </span>
+                    </td>
+                   </tr>
+                  </tbody></table>
+                 </div>
+                </center>
+               </div></div>
+        </div>
+    </body>
 </html>
