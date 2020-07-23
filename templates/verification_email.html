@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
         <script> 
             function mouseover() { 
-                document.getElementById("button").style.color = "red"; 
+                document.getElementById("button").style.color = "green"; 
                 document.getElementById("button").style.backgroundColor = "white";
                 
                 document.getElementById("button").style.transitionProperty = "color";
@@ -14,20 +14,65 @@
                 document.getElementById("button").style.color = "white"; 
                 document.getElementById("button").style.backgroundColor = "#046E8B";
             } 
-            function mousedown() { 
-                document.getElementById("button").style.outline = "none"; 
-            } 
         </script>
-        <title>فعالسازی حساب کاربری</title>
     </head>
     <body>
-        <div style="position: absolute ;width: 22vw;height: 21vw;margin-left: 39vw; margin-top: 2vw;;">
-            <img style="position: absolute;left: 0; top : 0;width:22vw;" src = "https://img.techpowerup.org/200721/formv2.png"/>
-            <p style="position: absolute; margin-top: 6.6vw; font-size: 0.7vw; right: 4.48vw;;">{{ name }}</p>
-            <button id="button" style="font-size: 0.68vw; position: absolute;margin-top: 14.6vw; left: 7vw;width: 8VW;height: 1.98VW; border: none;border-radius: 2vw;color : white;
-                            background-color: #046e8b;box-shadow: 0px 0px 1.22vw 0.1vw rgba(0 , 0 , 0 , 0.24);
-            "onclick="window.location.href='127.0.0.1:8000/user/activate/{{ activation_code }}';"onmouseover="mouseover()"
-            onmouseout="mouseout()" onmousedown="mousedown()" >فعال سازی حساب</button>
+        <div>
+            <div dir="rtl" style="margin:0;padding:0!important;background-color:#f6f6f6" width="100%">
+                <center style="width:100%;background-color:#f6f6f6">
+                 <div style="max-width:600px;margin:0 auto">
+                  
+                  <table align="center" border="0" cellpadding="0" cellspacing="0" style="margin:0 auto" width="100%">
+                   <tbody><tr>
+                    <td style="padding:40px 0 20px;text-align:center">
+                     <a href="#" rel="noopener noreferrer" style="text-decoration:none" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://quera.ir/qmail/click/gAAAAABfDFA8-h7cp6pGPDE6qN8G1FQeZuZzWChuXD4HvWRYH-N9y4a3HvnTKoLeWoMMx41oZuz5BK6jASjJxPSoyo268ZOkLL-VvMUeu2rHap3duqTbfR8j5NMIA2VwHB2EsCRBfq-EPbtxfR5b6UoHtTCY80RNd-A243HYvfHqcCUIUQIbItzLPp9guK8n9mO2HXs_NCDF1uqEDbFckjHKhNNpBhiji34L-f-E82Yi_fHbleRw1J5zxCGjOFyNP_0et9-7ClfoIq7QVZRSUUMHbKXgOjJntG46sAxA8t3-UVySKFmvtyw%3D&amp;source=gmail&amp;ust=1595513154337000&amp;usg=AFQjCNF0Z2ci2gOeWQu1MXD0MkL-odX32g">
+                      <img alt="gizshop" border="0" src="https://img.techpowerup.org/200722/logopng.png" style="border-bottom : solid 1px rgba(0 , 0 , 0 , 0.24); width : 12vw;height:6vw;font-family:IranSans,Tahoma,sans-serif;font-size:15px;line-height:15px;color:#555555" width="180" class="CToWUd">
+                     </a>
+                    </td>
+                   </tr>
+                   <tr>
+                    <td style="background-color:#ffffff">
+                     <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                      <tbody><tr>
+                       <td style="padding : 30px ;padding-top : 50px;font-family:IranSans,Tahoma,sans-serif;font-size:15px;line-height:25px;color:#555555">
+                        <p>
+                         <strong>{{ name }} عزیز، سلام</strong>
+                        </p>
+                        <p style = " font-size: 16.2px;">
+                            از این که فروشگاه گیزشاپ رو برای خرید انتخاب کردید بسیار سپاس گزاریم.<br />
+                            جهت تایید اطلاعات و فعالسازی حساب کاربری خود از طریق لینک زیر اقدام کنید.<br />.
+                            امیدواریم لحظات خوبی برای شما رقم بزنیم.
+                        </p>
+                        <h3 style="text-align:center">
+                         <a onmouseover="mouseover()" 
+                            onmouseout="mouseout()" 
+                            onmousedown="mousedown()" id = "button" href="https://fierce-wave-85041.herokuapp.com/user/activate/{{ activation_code }}/" rel="noopener noreferrer" style="margin-top:10vw;font-size : 0.78vw;background-color:#046e8b;color:white;padding:10px 20px;border-radius:8px;text-align:center;text-decoration:none;display:inline-block;box-shadow: 0px 0px 2vw 0.1vw rgba(0 , 0 , 0 , 0.24);" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://quera.ir/qmail/click/gAAAAABfDFA8_KPm0oJpqsOletgAwY98MfCci9nCbWXSPNTB9SbLMiHW965h1iObqzvBOsJOfkIfJ7SlTyjAiKaAJ7q74UjNfkivtOxOGYhCb1arCATXKIdg07Q1jMDG5KCNysixqmVQy2i7-GZbgLKi7tJElNZFfD7uMqNLxj6ySVTo2voGMBL3RmYQs6POq1g0v7Vkf5gis9hymVutCi1vcyehE7lyj5xUdPctA-pUF5OIF08hJN9mJtjt3WaPqGb2VrOaaZ1XTHQz5iwhwykC39kwuoa33QegKSIBlSd5reJ68mpm_nLVtYcRHlOltXdsAbIH-hu3RlyNv0t5_Lrp5QoR66pG1hrbJFAqK7lHnKsA5UYIoo3kbRwYYebaJcO73xSYWHvn1TekUyDcKv_uDkg6B56UaUsBDgJLq-gXPmOpFlzdmAM3mgEvFufDUhnGEV86r85iB0QchmPtUgmBlEvAxB8MnjIdAXLPUSpiRJ-1RfQiXuw%3D&amp;source=gmail&amp;ust=1595513154337000&amp;usg=AFQjCNHo-eWeQLwihBucE3l2zIHfJ7v1SQ">
+                          فعالسازی حساب کاربری
+                        </a>
+                        </h3>
+                        <p style="margin:4em 0px 2em;text-align:right ; font-size : 12px;">
+                         <strong>با احترام</strong>
+                        </p>
+                       </td>
+                      </tr>
+                     </tbody></table>
+                    </td>
+                   </tr>
+                  </tbody></table>
+                  <table align="center" border="0" cellpadding="0" cellspacing="0" style="margin:0 auto" width="100%">
+                   <tbody><tr>
+                    <td style="padding:20px;font-family:IranSans,Tahoma,sans-serif;font-size:12px;line-height:15px;text-align:center;color:#888888">
+                        this email was meant for Gizshop |   Gizshop Support Team
+                     <br>
+                     <span style="font-size:10px">
+                        All Right Reserved(CC)
+                     </span>
+                    </td>
+                   </tr>
+                  </tbody></table>
+                 </div>
+                </center>
+               </div></div>
         </div>
     </body>
 </html>
