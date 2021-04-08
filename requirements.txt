@@ -1,6 +1,6 @@
 decouple
 dj-config-url
-django == 2.2
+django == 2.2.20
 djangorestframework
 postgres
 psycopg2
